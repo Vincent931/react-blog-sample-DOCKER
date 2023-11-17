@@ -9,7 +9,6 @@
         "@symfony/webpack-encore": "^4.0",
         "bloodhound-js": "^1.2.3",
         "bootstrap": "^4.5.3",
-        "bootstrap-tagsinput": "^0.7.1",
         "bootswatch": "^4.5.3",
         "core-js": "^3.23.0",
         "flatpickr": "^4.6.9",
@@ -36,5 +35,11 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
-  }
+    },
+    "dependencies": {
+        "@babel/preset-react": "^7.23.3",
+        "caniuse-lite": "^1.0.30001562",
+        "prop-types": "^15.8.1",
+        "react-dom": "^18.2.0"
+    }
 }

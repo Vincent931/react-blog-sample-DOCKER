@@ -1,0 +1,6 @@
+.body-container #main h2{
+    word-break: break-all;
+}
+.body-container #main h1{
+    word-break: break-all;
+}

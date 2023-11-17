@@ -58,6 +58,7 @@ final class BlogController extends AbstractController
         #[CurrentUser] User $user,
         PostRepository $posts,
     ): Response {
+
         $authorPosts = $posts->findBy(['author' => $user], ['publishedAt' => 'DESC']);
 
         return $this->render('admin/blog/index.html.twig', ['posts' => $authorPosts]);

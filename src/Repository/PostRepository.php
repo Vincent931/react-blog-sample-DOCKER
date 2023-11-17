@@ -104,4 +104,16 @@ class PostRepository extends ServiceEntityRepository
             return 2 <= $term->length();
         });
     }
+
+    public function findAllDesc()
+    {
+        return $this->createQueryBuilder('b')
+            ->addSelect('a', 't')
+            ->innerJoin('b.author', 'a')
+            ->leftJoin('b.tags', 't')
+            ->orderBy('b.publishedAt', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

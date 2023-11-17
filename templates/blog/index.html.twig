@@ -3,14 +3,14 @@
 {% block body_id 'blog_index' %}
 
 {% block main %}
-    {% for post in paginator.results %}
+    <posts-component data-url="{{ path('blog_post', {slug: '__slug__'}) }}" ></posts-component>
+    {#% for post in paginator.results %}
         {{ include('blog/_post.html.twig') }}
     {% else %}
         <div class="jumbotron">{{ 'post.no_posts_found'|trans }}</div>
     {% endfor %}
-
+    
     {% if paginator.hasToPaginate %}
-
         <div class="navigation text-center">
             <ul class="pagination pagination-lg">
                 {% if paginator.hasPreviousPage %}
@@ -48,7 +48,7 @@
                 {% endif %}
             </ul>
         </div>
-    {% endif %}
+    {% endif %#}
 {% endblock %}
 
 {% block sidebar %}

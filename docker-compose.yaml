@@ -1,0 +1,89 @@
+version: '3.9'
+
+networks:
+    symfony:
+        driver: bridge
+
+volumes:
+    data:
+services:
+    ############## nécessite un accès à docker hub
+    #app:
+        #image: myapp
+        #container_name: myapp_c
+        #restart: always
+        #volumes:
+        #    - ./app:/var/www/react-blog-sample
+        #ports:
+        ##changer de ports 3306 pour 3307 car mysql local occupe ce port...
+        #    - "3306:3306"
+        #depends_on:
+        #    - apache
+        #    - mysql
+        #    - php
+        #    - assets
+    #mariadb:
+    mysql:
+        #image: mysql:8.0
+        image: mariadb:10.5.8
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: Bpm13579
+            MYSQL_DATABASE: vvhv1249_react_sample
+            MYSQL_USER: vincent
+            MYSQL_PASSWORD: Bpm13579
+        #command: --pid-file /var/lib/mysql/mysqld.pid
+        volumes:
+            - ./mysql:/var/wwww/html/mysql
+            #- ./mysql:/var/lib/mysql
+            #- ./db:/var/lib/mysql
+        ports:
+        #changer de ports 3306 pour 3307 car mysql local occupe ce port...
+            - "3307:3307"
+        networks:
+            - symfony
+    apache:
+        restart: always
+        build:
+            context: .
+            dockerfile: apache.dockerfile
+        ports:
+            - 8080:80
+        volumes:
+            - ./src:/var/www/html
+        depends_on:
+            - mysql
+            #- mariadb
+            - php
+        networks:
+            - symfony
+    php:
+        restart: always
+        build:
+            context: .
+            dockerfile: php.dockerfile
+            args:
+                - UID=${UID:-1000}
+                - GID=${UID:-1000}
+        volumes:
+            - ./src:/var/www/html
+        networks:
+             - symfony
+    assets:
+        restart: always
+        build:
+            context: .
+            dockerfile: react.dockerfile
+        volumes:
+            - ./src:/var/www/html
+        depends_on:
+            php:
+                condition: service_started
+        networks:
+        - symfony
+###< doctrine/doctrine-bundle ###
+
+#volumes:
+###> doctrine/doctrine-bundle ###
+#    database_data:
+###< doctrine/doctrine-bundle ###

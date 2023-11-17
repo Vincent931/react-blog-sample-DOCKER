@@ -1,7 +1,7 @@
 import './styles/admin.scss';
 import 'typeahead.js';
 import Bloodhound from "bloodhound-js";
-import 'bootstrap-tagsinput';
+//import 'bootstrap-tagsinput';
 
 $(function() {
     // Bootstrap-tagsinput initialization

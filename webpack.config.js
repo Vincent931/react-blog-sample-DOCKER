@@ -22,7 +22,11 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addEntry('admin', './assets/admin.js')
-
+    .addStyleEntry('_variables', './assets/styles/_variables.scss')
+    .addStyleEntry('admincss', './assets/styles/admin.scss')
+    .addStyleEntry('appcss', './assets/styles/app.scss')
+    .addStyleEntry('bootstrap-tagsinput', './assets/styles/bootstrap-tagsinput.scss')
+    .addStyleEntry('style', './assets/styles/style.css')
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
 
@@ -64,7 +68,7 @@ Encore
     //.enableTypeScriptLoader()
 
     // uncomment if you use React
-    //.enableReactPreset()
+    .enableReactPreset()
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
